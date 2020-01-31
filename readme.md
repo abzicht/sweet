@@ -1,6 +1,6 @@
 # S(plit T)weet
 
-This is a python based tool for splitting threads into multiple tweets, making
+A python based tool for splitting threads into multiple tweets, making
 it easier and faster to post long stories on
 [twitter.com](https://twitter.com).
 
