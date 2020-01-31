@@ -8,17 +8,28 @@ import sys
 import argparse
 
 def main():
-    parser = argparse.ArgumentParser(description="S(plit t)weet. Split threads into single tweets.")
+    parser = argparse.ArgumentParser(description="""
+    S(plit t)weet.
+    Split threads into single tweets.
+    Tweet separators: '\\n\\n', '.', and ' '.
+    Make sure that separators occur in intervals smaller than --max-chars.
+    """)
     parser.add_argument('-i', '--input-file', dest='input_file', type=str,
-                        help="The thread file. If not specified, the thread is read from STDIN")
+                        help="""
+                        The thread file. Default: STDIN.
+                        """)
     parser.add_argument('-o', '--output-file', dest='output_file', type=str,
-                        help="The file all tweets are saved to. If not specified, the thread is written to STDOUT")
+                        help="""
+                        The file all tweets are saved to. Default: STDOUT.
+                        """)
     parser.add_argument('-m', '--max-chars', dest='max_chars', type=int,
                         default=280,
-                        help="The maximum number of chars each tweet shall have. Default: 280")
+                        help="""
+                        The maximum number of chars each tweet shall have.
+                        Default: 280.
+                        """)
 
     args = parser.parse_args()
-    sweet = Sweet()
     if args.input_file:
         with open(args.input_file, "r") as input_file:
             thread = input_file.read()
@@ -30,7 +41,8 @@ def main():
                 file=sys.stderr)
         sys.exit(1)
 
-    tweets = sweet.split(thread, args.max_chars)
+    sweet = Sweet(args.max_chars)
+    tweets = sweet.compose_tweets(thread, sweet.split_v2)
 
     if args.output_file:
         with open(args.output_file, "w") as output_file:
