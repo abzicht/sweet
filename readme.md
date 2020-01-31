@@ -39,12 +39,12 @@ print(tweets)
 
 `sweet` splits tweets based on a defined set of separators. The separators are:
 `\n\n`, `.`, and ` `. They are used in this order. There are multiple
-algorithms 
+algorithms designed for behaving differently on splitting.
 
 ## Algorithms
 
-There are multiple algorithms, called `split_v1`, `split_v2`, etc. Each behaves
-differently and splits tweets in a different manner. Implement a split
+There are multiple default algorithms called `split_v1`, `split_v2`, etc. Each
+behaves differently and splits tweets in a different manner. Implement a split
 algorithm by defining a function that takes a string as input and returns a
 list of strings. Pass that function to `sweet` with the `compose_tweets`
 function.
